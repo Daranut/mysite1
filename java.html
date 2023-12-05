@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarayut_CsRMU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-color: gainsboro;">
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./indext.html" class="w3-bar-item w3-button"><b>Cs</b>RMU</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="./indext.html" class="w3-bar-item w3-button">Home</a>
+      <a href="./java.html" class="w3-bar-item w3-button">Java</a>
+      <a href="./api.html" class="w3-bar-item w3-button">Api</a>
+      <a href="./about.html" class="w3-bar-item w3-button">About</a>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+<h4 style="font-weight: bold;">A-Z</h4>
+<button onclick="printAlphabet()">ตกลง</button>
+<p id="demo1"></p>
+  
+<h4 style="font-weight: bold;">Constructor Function: Accumulator(startingValue)</h4>
+  <label for="inputValue">ป้อนตัวเลข:</label>
+  <input type="number" id="inputValue" placeholder="ป้อนตัวเลข">
+  <button onclick="runAccumulator()">ตกลง</button>
+  <p id="demo2"></p>
+
+  <h4 style="font-weight: bold;">คูณเลข</h4>
+  <label for="num1">ป้อนตัวเลข:</label>
+  <input type="number" id="num1" placeholder="ป้อนตัวเลข"><br><br>
+  <label for="num2">ป้อนตัวเลข:</label>
+  <input type="number" id="num2" placeholder="ป้อนตัวเลข">
+  <button onclick="multiplyNumbers()">ตกลง</button>
+  <p id="result"></p>
+
+  <h4 style="font-weight: bold;">แปลงอุณหภูมิ</h4>
+  <label for="temperature">ป้อนอุณหภูมิ:</label>
+  <input type="number" id="temperature" placeholder="ป้อนอุณหภูมิ">
+  <select id="unit">
+    <option value="เซลเซียส">เซลเซียส</option>
+    <option value="ฟาเรนไฮต์">ฟาเรนไฮต์</option>
+  </select>
+  <button onclick="convertTemperature()">แปลงค่า</button>
+  <p id="convertedTemperature"></p>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge" ">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+    function printAlphabet() {
+    let currentCharCode = 'A'.charCodeAt(0);
+  
+    const intervalId = setInterval(() => {
+      document.getElementById("demo1").innerHTML = String.fromCharCode(currentCharCode);
+      //console.log(String.fromCharCode(currentCharCode));
+      currentCharCode++;
+  
+      if (currentCharCode > 'Z'.charCodeAt(0)) {
+        clearInterval(intervalId);
+      }
+    }, 1000);
+  } 
+
+  function Accumulator(startingValue) {
+      this.currentValue = startingValue;
+      this.read = function () {
+        const inputValue = document.getElementById("inputValue").value;
+        this.currentValue += +inputValue;
+      };
+
+      this.show = function () {
+        return `Current value is: ${this.currentValue}`;
+      };
+    }
+
+    // กำหนดค่าเริ่มต้นเป็น 10
+    const accumulator = new Accumulator(10);
+
+    function runAccumulator() {
+      accumulator.read();
+      accumulator.show();
+      document.getElementById("demo2").innerHTML = `ตัวเลขตอนนี้คือ: ${accumulator.currentValue}`;
+    }
+
+    const multiplyNum = (x, y) => x * y;
+
+function multiplyNumbers() {
+  const num1 = document.getElementById("num1").value;
+  const num2 = document.getElementById("num2").value;
+
+  const result = multiplyNum(+num1, +num2);
+
+  document.getElementById("result").textContent = `คำตอบคือ: ${result}`;
+}
+
+function convertTemperature() {
+      const temperatureInput = document.getElementById("temperature").value;
+      const unitSelect = document.getElementById("unit");
+      const selectedUnit = unitSelect.options[unitSelect.selectedIndex].value;
+
+      let convertedTemperature;
+
+      if (selectedUnit === "celsius") {
+        convertedTemperature = (temperatureInput * 9/5) + 32;
+      } else {
+        convertedTemperature = (temperatureInput - 32) * 5/9;
+      }
+
+      document.getElementById("convertedTemperature").textContent = `อุณหภูมิที่แปลงแล้ว: ${convertedTemperature.toFixed(2)} ${selectedUnit}`;
+    }
+
+</script>
+</body>
+</html>
